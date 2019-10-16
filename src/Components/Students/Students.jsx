@@ -2,10 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 import StudentsCss from './Students.module.css'
 
-import StudentInputCss from "../Student_Input/Student_Info.module.css";
 import { fullNameValidator } from "../../Validators";
 import { removeStudentAction, updateStudentAction } from "../../Redux/ActionCreators";
-import { render } from "react-dom";
+
 
 
 
@@ -113,8 +112,9 @@ class StudentInfo extends React.Component {
                 </div>
 
                 );
-            case "removed":
-                return (<div></div>);
+            default:
+                return (<div/>);
+
         }
     }
 }
