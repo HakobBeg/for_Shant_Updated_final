@@ -82,9 +82,9 @@ class StudentInfo extends React.Component {
             case "show":
                 return (
                     <div className={StudentsCss.StudentInfo}>
-                        <p>{this.props.fullname}</p>
-                        <p>{this.props.Sdate}</p>
-                        <p>{this.props.Sperformance}</p>
+                        <p>{this.state.fioInput}</p>
+                        <p>{this.state.dateInput}</p>
+                        <p>{this.state.performanceInput}</p>
 
                         <div className={StudentsCss.buttons}>
                             <button onClick={this.onRemoveButtonClick}>Remove</button>
