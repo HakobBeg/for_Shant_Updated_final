@@ -1,8 +1,7 @@
 import { newStudentInput, removeStudent, updateStudent } from "../Constants";
 import {
-    addData,
+
     addDataToStorage,
-    getDataFromStorage,
     removeDataFromStorage
 } from "../StorageWorker/Storage_Functions";
 
@@ -28,24 +27,22 @@ export const studentDataChangeReducer = (state={students:[]},action)=>{
                     removeDataFromStorage(id);
                     return newState;
 
-                }
+                }});
             return state;
-            });
-
         }
         case updateStudent:
-            let newState = Object.assign({},state);
-            newState.students.forEach((student)=>{
-                if(student['id']===action.payload.id)
-                {
-                    student=action.payload.uStudent;
+            {
+            let newState = Object.assign({}, state);
+            newState.students.forEach((student) => {
+                if (student['id'] === action.payload.id) {
+                    student = action.payload.uStudent;
                     removeDataFromStorage(action.payload.id);
                     addDataToStorage(action.payload.uStudent);
                     return newState;
                 }
             });
             return state;
-
+        }
         default:
             return state;
     }
