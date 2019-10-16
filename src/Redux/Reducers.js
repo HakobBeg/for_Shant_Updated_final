@@ -43,7 +43,7 @@ export const studentDataChangeReducer = (state={students:[]},action)=>{
                     addDataToStorage(action.payload.uStudent);
                     return newState;
                 }
-            })
+            });
             return state;
 
         default:

@@ -20,6 +20,7 @@ rerenderPage();
 
 store.subscribe(()=>{
     rerenderPage(store.getState());
+    console.log(store.getState());
 });
 
 

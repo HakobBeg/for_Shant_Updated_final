@@ -5,6 +5,7 @@ import StudentsCss from './Students.module.css'
 import StudentInputCss from "../Student_Input/Student_Info.module.css";
 import { fullNameValidator } from "../../Validators";
 import { removeStudentAction, updateStudentAction } from "../../Redux/ActionCreators";
+import { render } from "react-dom";
 
 
 
@@ -73,6 +74,7 @@ class StudentInfo extends React.Component {
 
     onRemoveButtonClick(){
         this.props.dispatch(removeStudentAction(this.props.id));
+        this.setState({currentForm:"removed"});
     }
 
     render() {
@@ -111,6 +113,8 @@ class StudentInfo extends React.Component {
                 </div>
 
                 );
+            case "removed":
+                return (<div></div>);
         }
     }
 }
@@ -118,33 +122,20 @@ class StudentInfo extends React.Component {
 
 
 
+const Students = (props)=>{
+    const studentsInfo = props.studentsList.students.map(item => <StudentInfo id={item.id}
+                                                                                   fullname={item.fullName}
+                                                                                   Sdate={item.date}
+                                                                                   Sperformance={item.Studentperformance} dispatch={props.dispatch}/>);
+    return(
+        <div className={StudentsCss.StudentInfoSpace}>
+            {studentsInfo}
 
-class Students extends React.Component {
-    constructor(props) {
-
-        super(props);
-
-
-    };
-
-    render() {
-
-        const studentsInfo = this.props.studentsList.students.map(item => <StudentInfo id={item.id}
-                                                                                       fullname={item.fullName}
-                                                                                       Sdate={item.date}
-                                                                                       Sperformance={item.Studentperformance} dispatch={this.props.dispatch}/>);
-
-        return (
-            <div className={StudentsCss.StudentInfoSpace}>
-                {studentsInfo}
-
-            </div>
-
-        );
-
-    }
+        </div>
+    );
 
 }
+
 
 const mapDispatchToProps = (dispatch) => ({
     dispatch
